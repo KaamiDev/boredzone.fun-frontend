@@ -40,3 +40,44 @@ body {
 .nav-links a:hover {
 	color: #fff;
 }
+
+.header-section {
+	color: #fff;
+	background-color: #4aabf5;
+	text-align: center;
+	overflow: hidden;
+}
+
+.header-section h1 {
+	margin-top: 70px;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.header-section h3 {
+	font-weight: normal;
+	width: 55%;
+	display: block;
+	margin: 10px auto;
+	margin-bottom: 40px;
+}
+
+.header-buttons {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 60px;
+}
+
+.header-buttons a {
+	text-decoration: none;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 10px 30px 10px 30px;
+	border-radius: 8px;
+	color: #fff;
+	background-color: #55b5ff;
+}
+
+.header-buttons a:hover {
+	background-color: #66bdff;
+}
