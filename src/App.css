@@ -89,6 +89,7 @@ body {
 	justify-content: center;
 	margin-top: 40px;
 	margin-bottom: 100px;
+	min-height: calc(100vh - 211px - 25px);
 }
 
 .popular-column {
@@ -239,4 +240,53 @@ body {
 
 .submit-idea-btn {
 	margin-top: 10px;
+}
+
+.login-contents {
+	margin-top: 60px;
+	color: #8e8e8e;
+	text-align: center;
+}
+
+.login-contents h5 {
+	font-weight: normal;
+	margin-top: 0;
+	margin-bottom: 40px;
+}
+
+.login-contents h2 span {
+	color: #4aabf5;
+}
+
+.login-contents h2 {
+	margin-bottom: 10px;
+}
+
+.login-card h3 {
+	font-weight: normal;
+}
+
+.login-card {
+	padding: 20px;
+	width: 35%;
+	margin: 0 auto;
+}
+
+.login-card input {
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 5px;
+	width: 50%;
+	padding: 5px;
+	font-family: 'Arvo', serif;
+}
+
+.login-btn {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.login-contents {
+	min-height: calc(100vh - 211px - 25px);
 }
