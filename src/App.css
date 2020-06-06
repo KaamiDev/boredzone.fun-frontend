@@ -1,1 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap');
 
+body {
+	font-family: 'Arvo', serif;
+}
+
+.navbar {
+	background-color: #55b5ff;
+	display: flex;
+	padding: 30px;
+	color: #fff;
+	justify-content: space-between;
+}
+
+.nav-heading h2 {
+	margin: 0;
+	font-size: 30px;
+	margin-left: 40px;
+}
+
+.nav-heading a {
+	text-decoration: none;
+	color: #fff;
+}
+
+.nav-links {
+	margin-right: 30px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.nav-links a {
+	text-decoration: none;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
+	color: #b4deff;
+}
+
+.nav-links a:hover {
+	color: #fff;
+}
