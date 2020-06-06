@@ -15,6 +15,10 @@ const SubmitCard = () => {
 					here
 				</Link>.
 			</p>
+			{/* <form>
+				<textarea placeholder="Briefly describe your idea here.." className="fake-submit-box-text" />
+				<button className="universal-btn submit-idea-btn">Continue</button>
+			</form> */}
 		</div>
 	);
 };

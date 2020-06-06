@@ -206,3 +206,37 @@ body {
 .show-more {
 	font-size: 15px;
 }
+
+.sort-selector {
+	margin-bottom: 30px;
+}
+
+.sort-selector-label {
+	margin-right: 10px;
+	font-size: 13px;
+}
+
+.fake-submit-box-text {
+	resize: none;
+	width: 100%;
+	padding: 10px;
+	font-family: 'Arvo', Serif;
+}
+
+.universal-btn {
+	background-color: #55b5ff;
+	border: none;
+	outline: none;
+	color: #fff;
+	padding: 5px 30px;
+	border-radius: 25px;
+	cursor: pointer;
+}
+
+.universal-btn:hover {
+	background-color: #66bdff;
+}
+
+.submit-idea-btn {
+	margin-top: 10px;
+}
