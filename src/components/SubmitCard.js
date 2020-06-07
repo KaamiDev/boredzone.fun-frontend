@@ -30,16 +30,14 @@ const SubmitCard = () => {
 				</p>
 			</div>
 			<div style={{ display: localStorage.getItem('authToken') ? '' : 'none' }}>
-				<form>
-					<textarea
-						onChange={handleChange}
-						placeholder="Briefly describe your idea here.."
-						className="fake-submit-box-text"
-					/>
-					<button onClick={handleClick} className="universal-btn submit-idea-btn">
-						Continue
-					</button>
-				</form>
+				<textarea
+					onChange={handleChange}
+					placeholder="Briefly describe your idea here.."
+					className="fake-submit-box-text"
+				/>
+				<button onClick={handleClick} className="universal-btn submit-idea-btn">
+					Continue
+				</button>
 			</div>
 		</div>
 	);

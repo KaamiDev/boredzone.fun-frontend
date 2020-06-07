@@ -1,23 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-const IdeaCard = () => {
+const IdeaCard = (props) => {
+	const [ rank, setRank ] = useState(props.rank);
+	const [ upvoted, setUpvoted ] = useState(props.upvoted);
+	const [ downvoted, setDownvoted ] = useState(props.downvoted);
+
+	const handleUpvote = async () => {
+		try {
+			const response = await axios.post(
+				'http://localhost:5000/rank-post/upvote/' + props.id,
+				{},
+				{
+					headers: {
+						authToken: localStorage.getItem('authToken')
+					}
+				}
+			);
+			setRank(response.data.newRank);
+			setUpvoted(response.data.upvoted);
+			setDownvoted(response.data.downvoted);
+		} catch (error) {
+			if (error.response.status === 403) {
+				window.location = '/logout';
+			}
+		}
+	};
+
+	const handleDownvote = async () => {
+		try {
+			const response = await axios.post(
+				'http://localhost:5000/rank-post/downvote/' + props.id,
+				{},
+				{
+					headers: {
+						authToken: localStorage.getItem('authToken')
+					}
+				}
+			);
+			setRank(response.data.newRank);
+			setUpvoted(response.data.upvoted);
+			setDownvoted(response.data.downvoted);
+		} catch (error) {
+			if (error.response.status === 403) {
+				window.location = '/logout';
+			}
+		}
+	};
+
 	return (
 		<div className="idea-card shadow">
 			<div className="upvote-column">
-				<button>+</button>
-				<p>15</p>
-				<button>-</button>
+				<button onClick={handleUpvote} style={{ color: upvoted === true ? '#4AABF5' : '' }}>
+					+
+				</button>
+				<p style={{ color: upvoted === true || downvoted === true ? '#4AABF5' : '' }}>{rank}</p>
+				<button onClick={handleDownvote} style={{ color: downvoted === true ? '#4AABF5' : '' }}>
+					-
+				</button>
 			</div>
 			<div className="idea-column">
-				<h3 className="idea-title">Go outside for some fresh air!</h3>
-				<p className="idea-description">
-					Social distancing doesn't mean your forced to stay at home. Go for a walk around the block! Ride
-					your bike! Enjoy nature! But as you do so, remember to stay safe! This means consider wearing a
-					mask, and make sure to remain at least 5m away from others at all times, avoid touching your face,
-					and also wash your hands immediately after arriving home!
-				</p>
+				<h3 className="idea-title">{props.title}</h3>
+				<p className="idea-description">{props.description}</p>
 				<p className="author-and-date">
-					Submitted by <span className="color-link">Karamat</span> on 6/6/2020, 12:53:53 AM
+					Submitted by{' '}
+					<span className="color-link" style={{ textTransform: 'capitalize' }}>
+						{props.user}
+					</span>{' '}
+					on {props.date}
 				</p>
 			</div>
 		</div>

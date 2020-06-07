@@ -1,9 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import IdeaCard from './IdeaCard';
 import SubmitCard from './SubmitCard';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+	const [ ideas, setIdeas ] = useState([]);
+
+	useEffect(() => {
+		const apiCall = async () => {
+			let response = await axios.get('http://localhost:5000/get-data/home', {
+				headers: { authtoken: localStorage.getItem('authToken') }
+			});
+			setIdeas(
+				response.data.map((idea) => {
+					let d = new Date(idea.date);
+					return (
+						<IdeaCard
+							title={idea.title}
+							description={idea.description}
+							user={idea.user}
+							date={d.toLocaleString()}
+							id={idea._id}
+							rank={idea.rank}
+							upvoted={idea.upvoted}
+							downvoted={idea.downvoted}
+							key={idea._id}
+						/>
+					);
+				})
+			);
+		};
+		apiCall();
+	}, []);
+
 	return (
 		<div className="home-body">
 			<div className="header-section">
@@ -28,8 +58,7 @@ const Home = () => {
 						<h5>Some recently submitted popular ideas!</h5>
 					</div>
 
-					<IdeaCard />
-					<IdeaCard />
+					{ideas}
 
 					<Link className="color-link show-more" to="/browse">
 						View All
