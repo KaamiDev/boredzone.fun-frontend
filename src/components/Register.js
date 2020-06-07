@@ -37,7 +37,7 @@ const Register = () => {
 		e.preventDefault();
 		setSubmittingForm(true);
 		try {
-			const response = await axios.post('http://192.168.0.23:5000/register', {
+			const response = await axios.post('https://api.backend.boredzone.fun/register', {
 				username,
 				email,
 				password,

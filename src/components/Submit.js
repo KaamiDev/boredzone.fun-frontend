@@ -9,7 +9,7 @@ const Submit = () => {
 
 	const apiCall = async () => {
 		try {
-			let response = await axios.get('http://192.168.0.23:5000/get-data/submitted/', {
+			let response = await axios.get('https://api.backend.boredzone.fun/get-data/submitted/', {
 				headers: { authtoken: localStorage.getItem('authToken') }
 			});
 			setIdeas(

@@ -14,7 +14,7 @@ const IdeaCard = (props) => {
 		if (localStorage.getItem('authToken')) {
 			try {
 				const response = await axios.post(
-					'http://192.168.0.23:5000/rank-post/upvote/' + props.id,
+					'https://api.backend.boredzone.fun/rank-post/upvote/' + props.id,
 					{},
 					{
 						headers: {
@@ -39,7 +39,7 @@ const IdeaCard = (props) => {
 		if (localStorage.getItem('authToken')) {
 			try {
 				const response = await axios.post(
-					'http://192.168.0.23:5000/rank-post/downvote/' + props.id,
+					'https://api.backend.boredzone.fun/rank-post/downvote/' + props.id,
 					{},
 					{
 						headers: {
@@ -64,7 +64,7 @@ const IdeaCard = (props) => {
 		e.preventDefault();
 		try {
 			const response = await axios.post(
-				'http://192.168.0.23:5000/submit/delete/' + props.id,
+				'https://api.backend.boredzone.fun/submit/delete/' + props.id,
 				{},
 				{
 					headers: {

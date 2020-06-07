@@ -9,7 +9,7 @@ const Home = () => {
 
 	useEffect(() => {
 		const apiCall = async () => {
-			let response = await axios.get('http://192.168.0.23:5000/get-data/home', {
+			let response = await axios.get('https://api.backend.boredzone.fun/get-data/home', {
 				headers: { authtoken: localStorage.getItem('authToken') }
 			});
 			setIdeas(

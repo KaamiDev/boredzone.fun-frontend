@@ -34,7 +34,7 @@ const SubmitCardReal = (props) => {
 		setSubmittingForm(true);
 		try {
 			const response = await axios.post(
-				'http://192.168.0.23:5000/submit',
+				'https://api.backend.boredzone.fun/submit',
 				{
 					ideaTitle,
 					ideaDescription

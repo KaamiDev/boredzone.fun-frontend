@@ -8,7 +8,7 @@ const Browse = () => {
 	const [ displaying, setDisplaying ] = useState(10);
 
 	const apiCall = async (sort) => {
-		let response = await axios.get('http://192.168.0.23:5000/get-data/browse/' + sort, {
+		let response = await axios.get('https://api.backend.boredzone.fun/get-data/browse/' + sort, {
 			headers: { authtoken: localStorage.getItem('authToken') }
 		});
 		setIdeas(

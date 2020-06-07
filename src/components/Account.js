@@ -14,7 +14,7 @@ const Account = () => {
 	useEffect(() => {
 		const apiCall = async () => {
 			try {
-				let response = await axios.get('http://192.168.0.23:5000/account/getinfo', {
+				let response = await axios.get('https://api.backend.boredzone.fun/account/getinfo', {
 					headers: { authtoken: localStorage.getItem('authToken') }
 				});
 				setUsername(response.data);
@@ -53,7 +53,7 @@ const Account = () => {
 		setSubmittingForm(true);
 		try {
 			const response = await axios.post(
-				'http://192.168.0.23:5000/account/changepw',
+				'https://api.backend.boredzone.fun/account/changepw',
 				{
 					oldPassword,
 					newPassword,
