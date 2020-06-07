@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Login = (props) => {
 	const [ msg, setMsg ] = useState(queryString.parse(props.location.search).msg);
-	const [ errMessage, setErrMessage ] = useState('');
+	const [ errMessage, setErrMessage ] = useState(queryString.parse(props.location.search).errmsg);
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
 	const [ submittingForm, setSubmittingForm ] = useState(false);
