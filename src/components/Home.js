@@ -14,7 +14,9 @@ const Home = () => {
 				</h3>
 				<div className="header-buttons">
 					<Link to="/browse">Browse Ideas</Link>
-					<Link to="/login">Login</Link>
+					<Link to={localStorage.getItem('authToken') ? '/account' : '/login'}>
+						{localStorage.getItem('authToken') ? 'Account' : 'Login'}
+					</Link>
 				</div>
 			</div>
 			<div className="home-contents">

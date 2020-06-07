@@ -290,3 +290,7 @@ body {
 .login-contents {
 	min-height: calc(100vh - 211px - 25px);
 }
+
+.make-sure-footer-stays {
+	min-height: calc(100vh - 211px - 25px);
+}

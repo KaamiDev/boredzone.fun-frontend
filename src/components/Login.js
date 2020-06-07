@@ -1,7 +1,50 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import axios from 'axios';
+import queryString from 'query-string';
+import { Link, useHistory } from 'react-router-dom';
 
-const Login = () => {
+const Login = (props) => {
+	let history = useHistory();
+
+	const [ msg, setMsg ] = useState(queryString.parse(props.location.search).msg);
+	const [ errMessage, setErrMessage ] = useState('');
+	const [ email, setEmail ] = useState('');
+	const [ password, setPassword ] = useState('');
+	const [ submittingForm, setSubmittingForm ] = useState(false);
+
+	const handleInputChange = (e) => {
+		setMsg('');
+		setErrMessage('');
+		switch (e.target.placeholder) {
+			case 'Email':
+				setEmail(e.target.value);
+				break;
+			case 'Password':
+				setPassword(e.target.value);
+				break;
+			default:
+				// do nothing
+				break;
+		}
+	};
+
+	const handleSubmit = async (e) => {
+		setMsg('');
+		e.preventDefault();
+		setSubmittingForm(true);
+		try {
+			const response = await axios.post('http://localhost:5000/login', {
+				email,
+				password
+			});
+			localStorage.setItem('authToken', response.data);
+			window.location = '/';
+		} catch (error) {
+			setErrMessage(error.response.data);
+			setSubmittingForm(false);
+		}
+	};
+
 	return (
 		<div className="login-contents">
 			<div className="login-title">
@@ -17,9 +60,15 @@ const Login = () => {
 			</div>
 			<div className="login-card shadow">
 				<h3>Login Below.</h3>
-				<input placeholder="Email" />
-				<input placeholder="Password" />
-				<button className="universal-btn login-btn">Login</button>
+				<p style={{ color: 'green' }}>{msg}</p>
+				<p style={{ color: 'red' }}>{errMessage}</p>
+				<form onSubmit={handleSubmit}>
+					<input type="email" onChange={handleInputChange} placeholder="Email" />
+					<input type="password" onChange={handleInputChange} placeholder="Password" />
+					<button type="submit" className="universal-btn login-btn">
+						{submittingForm ? 'Loading..' : 'Login'}
+					</button>
+				</form>
 			</div>
 		</div>
 	);

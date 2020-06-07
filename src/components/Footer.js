@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Browse = () => {
+const Footer = () => {
 	return (
 		<div className="footer">
 			<p>
@@ -10,4 +10,4 @@ const Browse = () => {
 	);
 };
 
-export default Browse;
+export default Footer;

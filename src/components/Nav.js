@@ -16,11 +16,33 @@ const Nav = () => {
 				<NavLink activeClassName="active" to="/browse">
 					Browse Ideas
 				</NavLink>
-				<NavLink activeClassName="active" to="/login">
+				<NavLink
+					style={{ display: localStorage.getItem('authToken') ? 'none' : '' }}
+					activeClassName="active"
+					to="/login"
+				>
 					Login
 				</NavLink>
-				<NavLink activeClassName="active" to="/register">
+				<NavLink
+					style={{ display: localStorage.getItem('authToken') ? 'none' : '' }}
+					activeClassName="active"
+					to="/register"
+				>
 					Register
+				</NavLink>
+				<NavLink
+					style={{ display: localStorage.getItem('authToken') ? '' : 'none' }}
+					activeClassName="active"
+					to="/submit"
+				>
+					Submit Idea
+				</NavLink>
+				<NavLink
+					style={{ display: localStorage.getItem('authToken') ? '' : 'none' }}
+					activeClassName="active"
+					to="/account"
+				>
+					My Account
 				</NavLink>
 			</div>
 		</div>
