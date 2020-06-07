@@ -9,7 +9,7 @@ const Home = () => {
 
 	useEffect(() => {
 		const apiCall = async () => {
-			let response = await axios.get('http://localhost:5000/get-data/home', {
+			let response = await axios.get('http://192.168.0.23:5000/get-data/home', {
 				headers: { authtoken: localStorage.getItem('authToken') }
 			});
 			setIdeas(
@@ -59,8 +59,8 @@ const Home = () => {
 					</div>
 
 					{ideas}
-
-					<Link className="color-link show-more" to="/browse">
+					<p style={{ display: ideas.length ? 'none' : '' }}>No ideas to display.</p>
+					<Link style={{ display: ideas.length ? '' : 'none' }} className="color-link show-more" to="/browse">
 						View All
 					</Link>
 				</div>

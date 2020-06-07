@@ -34,7 +34,7 @@ const SubmitCardReal = (props) => {
 		setSubmittingForm(true);
 		try {
 			const response = await axios.post(
-				'http://localhost:5000/submit',
+				'http://192.168.0.23:5000/submit',
 				{
 					ideaTitle,
 					ideaDescription
@@ -51,6 +51,7 @@ const SubmitCardReal = (props) => {
 			setIdeaTitle('');
 			setIdeaDescription('');
 			setSubmittingForm(false);
+			props.afterSubmit();
 		} catch (error) {
 			if (error.response.status === 403) {
 				window.location = '/logout';

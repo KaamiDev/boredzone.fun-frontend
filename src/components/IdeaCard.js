@@ -8,12 +8,13 @@ const IdeaCard = (props) => {
 	const [ rank, setRank ] = useState(props.rank);
 	const [ upvoted, setUpvoted ] = useState(props.upvoted);
 	const [ downvoted, setDownvoted ] = useState(props.downvoted);
+	const [ deleted, setDeleted ] = useState(false);
 
 	const handleUpvote = async () => {
 		if (localStorage.getItem('authToken')) {
 			try {
 				const response = await axios.post(
-					'http://localhost:5000/rank-post/upvote/' + props.id,
+					'http://192.168.0.23:5000/rank-post/upvote/' + props.id,
 					{},
 					{
 						headers: {
@@ -30,7 +31,7 @@ const IdeaCard = (props) => {
 				}
 			}
 		} else {
-			history.push('/login?errmsg=' + 'You must be logged in to upvote ideas.');
+			history.push('/login?errmsg=You must be logged in to upvote ideas.');
 		}
 	};
 
@@ -38,7 +39,7 @@ const IdeaCard = (props) => {
 		if (localStorage.getItem('authToken')) {
 			try {
 				const response = await axios.post(
-					'http://localhost:5000/rank-post/downvote/' + props.id,
+					'http://192.168.0.23:5000/rank-post/downvote/' + props.id,
 					{},
 					{
 						headers: {
@@ -55,12 +56,34 @@ const IdeaCard = (props) => {
 				}
 			}
 		} else {
-			history.push('/login?errmsg=' + 'You must be logged in to downvote ideas.');
+			history.push('/login?errmsg=You must be logged in to downvote ideas.');
+		}
+	};
+
+	const handleDelete = async (e) => {
+		e.preventDefault();
+		try {
+			const response = await axios.post(
+				'http://192.168.0.23:5000/submit/delete/' + props.id,
+				{},
+				{
+					headers: {
+						authToken: localStorage.getItem('authToken')
+					}
+				}
+			);
+			if (response.data === 'deleted') {
+				setDeleted(true);
+			}
+		} catch (error) {
+			if (error.response.status === 403) {
+				window.location = '/logout';
+			}
 		}
 	};
 
 	return (
-		<div className="idea-card shadow">
+		<div style={{ display: deleted ? 'none' : '' }} className="idea-card shadow">
 			<div className="upvote-column">
 				<button onClick={handleUpvote} style={{ color: upvoted === true ? '#4AABF5' : '' }}>
 					+
@@ -74,11 +97,14 @@ const IdeaCard = (props) => {
 				<h3 className="idea-title">{props.title}</h3>
 				<p className="idea-description">{props.description}</p>
 				<p className="author-and-date">
-					Submitted by{' '}
-					<span className="color-link" style={{ textTransform: 'capitalize' }}>
-						{props.user}
-					</span>{' '}
+					Submitted by <span style={{ textTransform: 'capitalize', fontWeight: 'bold' }}>{props.user}</span> {' '}
 					on {props.date}
+					<span style={{ display: props.deletable ? 'inline' : 'none' }}>
+						-{' '}
+						<a className="color-link" href="/submit" onClick={handleDelete}>
+							Delete
+						</a>
+					</span>
 				</p>
 			</div>
 		</div>

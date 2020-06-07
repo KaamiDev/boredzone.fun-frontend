@@ -1,9 +1,50 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import IdeaCard from './IdeaCard';
 import SubmitCard from './SubmitCard';
 
 const Browse = () => {
+	const [ ideas, setIdeas ] = useState([]);
+	const [ displaying, setDisplaying ] = useState(10);
+
+	const apiCall = async (sort) => {
+		let response = await axios.get('http://192.168.0.23:5000/get-data/browse/' + sort, {
+			headers: { authtoken: localStorage.getItem('authToken') }
+		});
+		setIdeas(
+			response.data.map((idea) => {
+				let d = new Date(idea.date);
+				return (
+					<IdeaCard
+						title={idea.title}
+						description={idea.description}
+						user={idea.user}
+						date={d.toLocaleString()}
+						id={idea._id}
+						rank={idea.rank}
+						upvoted={idea.upvoted}
+						downvoted={idea.downvoted}
+						key={idea._id}
+					/>
+				);
+			})
+		);
+	};
+
+	useEffect(() => {
+		apiCall('mostpopular');
+	}, []);
+
+	const handleChange = (e) => {
+		setDisplaying(10);
+		apiCall(e.target.value);
+	};
+
+	const handleLoadMore = (e) => {
+		e.preventDefault();
+		setDisplaying((displaying) => displaying + 10);
+	};
+
 	return (
 		<div className="home-contents">
 			<div className="popular-column">
@@ -14,22 +55,22 @@ const Browse = () => {
 					<h5>Browse all the user submitted ideas below!</h5>
 				</div>
 				<span className="sort-selector-label">Sort By:</span>
-				<select className="sort-selector">
-					<option>Most Popular</option>
-					<option>Least Popular</option>
-					<option>Newest</option>
-					<option>Oldest</option>
+				<select onChange={handleChange} className="sort-selector">
+					<option value="mostpopular">Most Popular</option>
+					<option value="leastpopular">Least Popular</option>
+					<option value="newest">Newest</option>
+					<option value="oldest">Oldest</option>
 				</select>
-				<IdeaCard />
-				<IdeaCard />
-				<IdeaCard />
-				<IdeaCard />
-				<IdeaCard />
-				<IdeaCard />
-				<IdeaCard />
-				<Link className="color-link show-more" to="/browse">
+				{ideas.slice(0, displaying)}
+				<p style={{ display: ideas.length ? 'none' : '' }}>No ideas to display.</p>
+				<a
+					onClick={handleLoadMore}
+					style={{ display: displaying >= ideas.length ? 'none' : '' }}
+					className="color-link show-more"
+					href="/browse"
+				>
 					Load More..
-				</Link>
+				</a>
 			</div>
 			<div className="submit-column">
 				<div className="column-heading">
