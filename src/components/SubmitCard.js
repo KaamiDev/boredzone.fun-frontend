@@ -1,7 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 const SubmitCard = () => {
+	let history = useHistory();
+
+	const [ ideaDescription, setIdeaDescription ] = useState('');
+
+	const handleChange = (e) => {
+		setIdeaDescription(e.target.value);
+	};
+
+	const handleClick = () => {
+		history.push('/submit?ideaTitle=' + ideaDescription);
+	};
+
 	return (
 		<div className="submit-card shadow">
 			<div style={{ display: localStorage.getItem('authToken') ? 'none' : '' }}>
@@ -19,8 +31,14 @@ const SubmitCard = () => {
 			</div>
 			<div style={{ display: localStorage.getItem('authToken') ? '' : 'none' }}>
 				<form>
-					<textarea placeholder="Briefly describe your idea here.." className="fake-submit-box-text" />
-					<button className="universal-btn submit-idea-btn">Continue</button>
+					<textarea
+						onChange={handleChange}
+						placeholder="Briefly describe your idea here.."
+						className="fake-submit-box-text"
+					/>
+					<button onClick={handleClick} className="universal-btn submit-idea-btn">
+						Continue
+					</button>
 				</form>
 			</div>
 		</div>

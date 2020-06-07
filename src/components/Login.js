@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import queryString from 'query-string';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Login = (props) => {
-	let history = useHistory();
-
 	const [ msg, setMsg ] = useState(queryString.parse(props.location.search).msg);
 	const [ errMessage, setErrMessage ] = useState('');
 	const [ email, setEmail ] = useState('');
