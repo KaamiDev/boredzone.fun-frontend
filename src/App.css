@@ -337,3 +337,7 @@ body {
 		margin-right: 10px;
 	}
 }
+
+.updown-btn:hover {
+	color: #8cc8f5;
+}

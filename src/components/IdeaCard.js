@@ -85,11 +85,19 @@ const IdeaCard = (props) => {
 	return (
 		<div style={{ display: deleted ? 'none' : '' }} className="idea-card shadow">
 			<div className="upvote-column">
-				<button onClick={handleUpvote} style={{ color: upvoted === true ? '#4AABF5' : '' }}>
+				<button
+					className="updown-btn"
+					onClick={handleUpvote}
+					style={{ color: upvoted === true ? '#4AABF5' : '' }}
+				>
 					+
 				</button>
 				<p style={{ color: upvoted === true || downvoted === true ? '#4AABF5' : '' }}>{rank}</p>
-				<button onClick={handleDownvote} style={{ color: downvoted === true ? '#4AABF5' : '' }}>
+				<button
+					className="updown-btn"
+					onClick={handleDownvote}
+					style={{ color: downvoted === true ? '#4AABF5' : '' }}
+				>
 					-
 				</button>
 			</div>
