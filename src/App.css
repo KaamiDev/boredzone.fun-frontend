@@ -294,3 +294,46 @@ body {
 .make-sure-footer-stays {
 	min-height: calc(100vh - 211px - 25px);
 }
+
+.profile-card {
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	text-align: left;
+}
+
+.profile-card h3 {
+	font-weight: normal;
+	font-size: 15px;
+	margin-bottom: 0;
+}
+
+.profile-card h5 {
+	font-weight: normal;
+	font-size: 12px;
+	margin-top: 0;
+}
+
+.profile-image-container {
+	margin-right: 15px;
+	padding-top: 15px;
+}
+
+.profile-image-container img {
+	width: 50px;
+}
+
+.profile-logout-container {
+	padding-top: 30px;
+}
+
+.profile-details-container {
+	margin-right: 50px;
+	padding-top: 8px;
+}
+
+@media only screen and (max-width: 1095px) {
+	.profile-details-container {
+		margin-right: 10px;
+	}
+}

@@ -5,6 +5,7 @@ import Nav from './components/Nav';
 import ScrollToTop from './components/ScrollToTop';
 import Footer from './components/Footer';
 import Home from './components/Home';
+import Account from './components/Account';
 import Browse from './components/Browse';
 import Submit from './components/Submit';
 import Login from './components/Login';
@@ -28,7 +29,7 @@ function App() {
 							component={localStorage.getItem('authToken') ? RedirectHome : Register}
 						/>
 						<Route path="/submit" component={localStorage.getItem('authToken') ? Submit : RedirectHome} />
-						<Route path="/account" component={localStorage.getItem('authToken') ? Submit : RedirectHome} />
+						<Route path="/account" component={localStorage.getItem('authToken') ? Account : RedirectHome} />
 						<Route path="/logout" component={Logout} />
 					</Switch>
 					<Footer />
